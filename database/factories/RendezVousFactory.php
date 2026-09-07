@@ -19,6 +19,7 @@ class RendezVousFactory extends Factory
         return [
             'creneau_id' => Creneau::factory(),
             'user_id' => User::factory(),
+            'statut' => 'en_attente',
         ];
     }
 }

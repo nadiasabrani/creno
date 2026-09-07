@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CreneauController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RendezVousController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,6 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/creneaux', [RendezVousController::class, 'index'])->name('creneaux.index');
+    Route::post('/rendez-vous', [RendezVousController::class, 'store'])->name('rendez-vous.store');
+    Route::get('/mes-rendez-vous', [RendezVousController::class, 'mesRendezVous'])->name('rendez-vous.mine');
+    Route::delete('/rendez-vous/{rendezVous}', [RendezVousController::class, 'annuler'])->name('rendez-vous.annuler');
 });
 
 Route::middleware(['auth', 'admin'])
